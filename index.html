@@ -690,6 +690,9 @@
                 }
                 
                 try {
+                    // Cancel any ongoing speech first (important for Windows)
+                    window.speechSynthesis.cancel();
+                    
                     // First try to use voices that can handle Chinese
                     let utterance = new SpeechSynthesisUtterance(character);
                     
@@ -750,11 +753,30 @@
                     
                     utterance.onend = () => {
                         characterDisplay.style.color = originalColor;
+                        // Reset the speech synthesis system (helps with Windows issues)
+                        setTimeout(() => {
+                            window.speechSynthesis.cancel();
+                        }, 100);
                     };
                     
                     window.speechSynthesis.speak(utterance);
+                    
+                    // Windows fix: if speech doesn't start within a reasonable time, reset it
+                    setTimeout(() => {
+                        if (window.speechSynthesis.speaking) {
+                            window.speechSynthesis.pause();
+                            window.speechSynthesis.resume();
+                        }
+                    }, 1000);
+                    
                 } catch (error) {
                     console.error("Error with speech synthesis:", error);
+                    // Try to reset the speech system on error
+                    try {
+                        window.speechSynthesis.cancel();
+                    } catch (e) {
+                        console.error("Failed to reset speech synthesis:", e);
+                    }
                 }
             }
             
