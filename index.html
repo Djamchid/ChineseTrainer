@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Calligraphy Practice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chinese Calligraphy Practice</h1>
+        <p>Practice writing common Chinese characters. Draw the displayed character in the box below.</p>
+        
+        <div class="streak-counter">Current streak: <span id="streak">0</span></div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="game-section">
+            <div class="character-container">
+                <div class="pinyin-display" id="pinyin"></div>
+                <div class="character-display" id="character"></div>
+                <div class="meaning-display" id="meaning"></div>
+                <div class="composition-info" id="composition"></div>
+                
+                <div class="controls">
+                    <button id="showHintBtn" class="stroke-order-btn">Show Hint</button>
+                    <button id="hideHintBtn" class="stroke-order-btn" style="display:none;">Hide Hint</button>
+                    <button id="pronounceBtn" class="pronounce-btn"><i class="fas fa-volume-up"></i> Pronounce</button>
+                </div>
+                
+                <div class="hint-container" id="hintContainer">
+                    <div class="character-display" style="opacity: 0.3;"></div>
+                </div>
+            </div>
+            
+            <div class="drawing-section">
+                <div class="drawing-area">
+                    <canvas id="canvas" width="300" height="300"></canvas>
+                </div>
+                
+                <div class="right-controls">
+                    <button id="clearBtn">Clear</button>
+                    <button id="nextBtn">Next Character</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings">
+            <label for="level">Difficulty Level:</label>
+            <select id="level">
+                <option value="elementary_ideograms">Elementary Ideograms</option>
+                <option value="combined_ideograms">Combined Ideograms</option>
+                <option value="beginner">Beginner (HSK 1)</option>
+                <option value="elementary">Elementary (HSK 2)</option>
+                <option value="intermediate">Intermediate (HSK 3)</option>
+                <option value="advanced">Advanced (HSK 4-6)</option>
+            </select>
+        </div>
+        
+        <div class="examples-container" id="examplesContainer">
+            <!-- Examples will be added here -->
+        </div>
+    </div>
+    
+    <script src="vocabulary.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
