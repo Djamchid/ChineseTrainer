@@ -374,4 +374,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the app
     initCanvas();
     loadCharacters();
-        
+});
